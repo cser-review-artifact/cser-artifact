@@ -1,0 +1,48 @@
+base_conf:
+  seed: 42
+  model_path: <MODEL_PATH_QWEN2_5_0_5B_INSTRUCT>
+  data_path: <DATA_PATH_GSM8K_TRAIN>
+  project_name: review-cser-gsm8k
+  start_id: 0
+actor_conf:
+  device: cuda
+  worker_port: <OMITTED_ACTOR_WORKER_PORT>
+  filter: true
+  batchsize: 3
+  num_generations: 8
+  max_prompt_length: 200
+  max_new_tokens: 800
+  first_send_size: 48
+  send_size: 48
+  per_start: 1
+  save_iter: 240
+  epoch_num: 100
+buffer_conf:
+  device: cpu
+  expsize: 192
+  first_send_size: 192
+  send_size: 192
+  per_start: 1
+learner_conf:
+  device: cuda
+  n_gpus: 4
+  worker_port: <OMITTED_LEARNER_WORKER_PORT>
+  loss_type: dual
+  no_tr: false
+  per: false
+  expsize: 192
+  batchsize: 192
+  mini_batchsize: 12
+  lr: 1.0e-06
+  kl_loss_coef: 0.01
+  cliprange: 0.2
+  clip_ratio_c: 3.0
+  a_decay: 0.95
+  per_gamma: 0.5
+  save_iter: 10
+  kl_iter: 100000
+  send_iter: 1
+  start_samples: 192
+  max_trainstep: 1100
+logging_conf:
+  log_level: INFO

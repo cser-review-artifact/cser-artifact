@@ -1,0 +1,79 @@
+base_conf:
+  seed: 42
+  task_type: math
+  training_mode: lora
+  model_path: <MODEL_PATH_QWEN2_5_MATH_7B>
+  data_path: <DATA_PATH_MATH12K_TRAIN>
+  project_name: review-cser-lora-math
+  start_id: 0
+
+actor_conf:
+  device: cuda
+  worker_port: <OMITTED_ACTOR_WORKER_PORT>
+  filter: true
+  batchsize: 24
+  num_generations: 8
+  keep_num: 8
+  max_prompt_length: 1000
+  max_new_tokens: 2500
+  mini_batchsize: 4
+  first_send_size: 192
+  send_size: 128
+  save_iter: 100
+  epoch_num: 100
+
+buffer_conf:
+  device: cpu
+  expsize: 192
+  first_send_size: 192
+  send_size: 128
+  per_start: 1
+
+learner_conf:
+  device: cuda
+  n_gpus: 1
+  worker_port: <OMITTED_LEARNER_WORKER_PORT>
+  loss_type: vespo
+  per: false
+  no_tr: false
+  expsize: 4096
+  batchsize: 192
+  mini_batchsize: 1
+  lr: 0.0002
+  kl_loss_coef: 0.01
+  cliprange: 0.2
+  clip_ratio_c: 3.0
+  per_gamma: 0.5
+  a_decay: 0.95
+  save_iter: 1
+  kl_iter: 100000
+  send_iter: 1
+  start_samples: 192
+  max_trainstep: 100
+  lora_r: 32
+  lora_alpha: 32
+  lora_dropout: 0.0
+  lora_target_modules:
+    - q_proj
+    - k_proj
+    - v_proj
+    - o_proj
+    - gate_proj
+    - up_proj
+    - down_proj
+
+lora_conf:
+  r: 32
+  alpha: 32
+  dropout: 0.0
+  target_modules:
+    - q_proj
+    - k_proj
+    - v_proj
+    - o_proj
+    - gate_proj
+    - up_proj
+    - down_proj
+
+logging_conf:
+  log_level: INFO
