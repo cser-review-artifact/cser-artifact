@@ -72,7 +72,7 @@ We use CountDown as a supplementary application beyond the mathematical reasonin
 
 <img src="./figs/grpo-cost.png" alt="Performance comparison between GRPO-ST128 (with CSER) and on-policy GRPO." width="550">
 
-This section further compares the sample consumption and per-step training time required by CSER to reach the same target performance. The table reports the training cost of on-policy GRPO-ST1 and GRPO-ST128 (w CSER) when converging to the target validation accuracy. The number of rollout samples denotes the number of new samples that must be generated online, while the number of training samples denotes the total number of samples used by learner updates, including both newly generated and replayed samples.
+This section further compares the sample consumption and per-step training time required by CSER to reach the same target performance (following [2506.13404][hf-2506], the target performance is 54% accuracy). The table reports the training cost of on-policy GRPO-ST1 and GRPO-ST128 (w CSER) when converging to the target validation accuracy. The number of rollout samples denotes the number of new samples that must be generated online, while the number of training samples denotes the total number of samples used by learner updates, including both newly generated and replayed samples.
 
 | Metric | GRPO-ST1 | GRPO-ST128 (w CSER) | Change relative to GRPO-ST1 |
 | --- | ---: | ---: | ---: |
@@ -243,3 +243,5 @@ We suggest that reviewers read the artifact in the following order:
 2. Read `utils/experience.py` to understand replay, temporal decay, and sampling.
 3. Read `utils/fsdp_worker.py` and `utils/fsdp_worker_lora.py` to understand the objective function and update logic.
 4. Read `configs/` to inspect the example configurations.
+
+[hf-2506]: https://huggingface.co/papers/2506.13404
